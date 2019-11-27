@@ -124,7 +124,7 @@ describe('Kamil', function() {
 		const lalka = createLibrary().getAvailableBook("Lalka");
 		const student = createPerson();
 		lalka.borrowBook(student, 3)
-		expect(lalka.returnBook()).to.eq(true)
+		expect(lalka.returnBook(student)).to.eq(true)
 		expect(lalka.isAvailable()).to.eq(true)
 		
 	});
