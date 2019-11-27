@@ -1,7 +1,7 @@
 var Borrowing = require('../src/Borrowing');
 
 module.exports = (class Book {
-    constructor(number, title, author, publishDate, price){
+    constructor(number, title, author){
         this.number = number;
         this.title = title;
         this.author = author;

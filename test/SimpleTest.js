@@ -18,7 +18,7 @@ describe('Person', function () {
 
     it('should be able to borrow a book', function () {
 		const student = createPerson();
-		const lalka = createLibrary().getBook("Lalka");
+		const lalka = createLibrary().getAvailableBook("Lalka");
 
         expect(lalka.borrowBook(student, 4)).to.eq(true);
 
@@ -28,7 +28,7 @@ describe('Person', function () {
     it('should not be able to borrow a book that is already borrowed', function () {
 		const student = createPerson();
 		const student2 = createPerson();
-		const lalka = createLibrary().getBook("Lalka");
+		const lalka = createLibrary().getAvailableBook("Lalka");
 
 		expect(lalka.borrowBook(student2, 3)).to.eq(false);
 		expect(lalka.currentBorrowing.person).to.eq(student);

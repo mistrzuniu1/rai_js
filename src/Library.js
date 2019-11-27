@@ -5,47 +5,43 @@ module.exports = (class Library {
 
     countBorrowedBooks(){
         var borrowedBooksNum = 0;
-        foreach (book in this.books)
-        {
+        this.books.forEach(book => {
             if (!book.isAvailable())
             {
                 borrowedBooksNum++;
             }
-        }
+        });
         return borrowedBooksNum;
     }
 
     countOutdatedBooks(){
         var outDatedBooksNum = 0;
-        foreach (book in this.books)
-        {
+        this.books.forEach(book => {
             if (!book.isOutdated())
             {
                 outDatedBooksNum++;
             }
-        }
+        });
         return outDatedBooksNum;
     }
 
     isAvailable(bookNumber){
-        foreach (book in this.books)
-        {
+        this.books.forEach(book => {
             if (book.number == bookNumber)
             {
                 return book.isAvailable();
             }
-        }
+        });
         return null;
     }
 
     whenWillBeAvailable(bookNumber){
-        foreach (book in this.books)
-        {
+        this.books.forEach(book => {
             if (book.number == bookNumber)
             {
                 return book.whenWillBeAvailable();
             }
-        }
+        });
         return null;
     }
 
@@ -57,14 +53,13 @@ module.exports = (class Library {
         return sorted.slice(0, 10);
     }
 
-    getAvailableBook(bookName){
-        foreach (book in this.books)
-        {
-            if (book.name == bookName && book.isAvailable())
+    getAvailableBook(bookTitle){
+        this.books.forEach(book => {
+            if (book.title == bookTitle && book.isAvailable())
             {
                 return book;
             }
-        }
+        });
         return null;
     }
 });
