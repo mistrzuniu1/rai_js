@@ -14,7 +14,7 @@ function createPerson() {
     return new Person("John", "Carmack");
 }
 
-describe('Person', function () {
+describe('Book', function () {
 
     it('should be able to borrow a book', function () {
 		const student = createPerson();
@@ -32,6 +32,31 @@ describe('Person', function () {
 		expect(lalka.borrowBook(student, 3)).to.eq(true);
 		expect(lalka.borrowBook(student2, 3)).to.eq(false);
 		expect(lalka.currentBorrowing.person).to.eq(student);
+	});
+
+	it('should not be able to prolong book borrowed by someone else', function () {
+		const student = createPerson();
+		const student2 = createPerson();
+		const lalka = createLibrary().getAvailableBook("Lalka");
+		expect(lalka.borrowBook(student, 3)).to.eq(true);
+		expect(lalka.prolong(student2, 3)).to.eq(false);
+		expect(lalka.currentBorrowing.person).to.eq(student);
+	});
+
+	it('should be able to borrow a book after returning it', function () {
+		const student = createPerson();
+		const lalka = createLibrary().getAvailableBook("Lalka");
+
+		expect(lalka.borrowBook(student, 3)).to.eq(true);
+		expect(lalka.returnBook(student)).to.eq(true);
+		expect(lalka.borrowBook(student, 3)).to.eq(true);
+	});
+
+	it('should not be able to return book which is not borrowed', function () {
+		const student = createPerson();
+		const lalka = createLibrary().getAvailableBook("Lalka");
+
+		expect(lalka.returnBook(student)).to.eq(false);
 	});
 
 });

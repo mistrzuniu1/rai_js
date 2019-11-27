@@ -10,7 +10,12 @@ module.exports = (class Book {
     }
 
     returnBook(person) {
+        if (this.isAvailable() || this.currentBorrowing.person !== person)
+        {
+            return false;
+        }
         this.currentBorrowing = null;
+        return true;
     }
 
     borrowBook(person, days){
