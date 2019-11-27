@@ -10,6 +10,7 @@ function createLibrary() {
     const lalka = new Book("#1", "Lalka", "Prus");
 	return new Library([hamlet, lalka]);
 }
+
 function createPerson() {
     return new Person("John", "Carmack");
 }
@@ -31,6 +32,7 @@ describe('Book', function () {
 		const lalka = createLibrary().getAvailableBook("Lalka");
 		expect(lalka.borrowBook(student, 3)).to.eq(true);
 		expect(lalka.borrowBook(student2, 3)).to.eq(false);
+
 		expect(lalka.currentBorrowing.person).to.eq(student);
 	});
 
@@ -59,6 +61,21 @@ describe('Book', function () {
 		expect(lalka.returnBook(student)).to.eq(false);
 	});
 
+
+	it('should be able to prolong borrowing', function () {
+		const student = createPerson();
+		const lalka = createLibrary().getAvailableBook("Lalka");
+
+		lalka.borrowBook(student, 4);
+
+		let expectedDayAfterProlong = new Date();
+		expectedDayAfterProlong.setDate(lalka.currentBorrowing.toDate + 3);
+
+		lalka.prolong(3);
+		let afterProlongDate = lalka.currentBorrowing.toDate;
+
+		expect(afterProlongDate.getDate()).to.eq(expectedDayAfterProlong.getDate());
+	});
 });
 
 describe('Library', function() {
