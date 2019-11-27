@@ -14,21 +14,27 @@ module.exports = (class Book {
     }
 
     borrowBook(person, days){
+        if (!this.isAvailable())
+        {
+            return false;
+        }
         var bookFrom = Date();
         var bookTill = bookFrom;
         bookTill.setDate(bookFrom + days);
         this.currentBorrowing = new Borrowing(person, bookFrom, bookTill);
         borrowsList.push(this.currentBorrowing);
+        return true;
     }
 
     prolong(duration){
         if (this.isAvailable())
         {
-            return;
+            return false;
         }
         var currRetDate = this.currentBorrowing.toDate;
         var newRetDate = this.currentBorrowing.toDate.setDate()
         this.currentBorrowing.toDate = newRetDate;
+        return true;
     }
 
     isAvailable(){
