@@ -26,23 +26,23 @@ module.exports = (class Library {
     }
 
     isAvailable(bookNumber){
-        this.books.forEach(book => {
+        var book = this.books.forEach(book => {
             if (book.number == bookNumber)
             {
                 return book.isAvailable();
             }
         });
-        return null;
+        return book;
     }
 
     whenWillBeAvailable(bookNumber){
-        this.books.forEach(book => {
+        var book = this.books.forEach(book => {
             if (book.number == bookNumber)
             {
                 return book.whenWillBeAvailable();
             }
         });
-        return null;
+        return book;
     }
 
     getTopTenBorrowed(){
@@ -54,12 +54,12 @@ module.exports = (class Library {
     }
 
     getAvailableBook(bookTitle){
-        this.books.forEach(book => {
+        var book = this.books.forEach(book => {
             if (book.title == bookTitle && book.isAvailable())
             {
                 return book;
             }
         });
-        return null;
+        return book;
     }
 });
