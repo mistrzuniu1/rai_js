@@ -26,8 +26,8 @@ module.exports = (class Book {
         return true;
     }
 
-    prolong(duration){
-        if (this.isAvailable())
+    prolong(person, duration){
+        if (this.isAvailable() || this.currentBorrowing.person !== person)
         {
             return false;
         }
@@ -38,11 +38,11 @@ module.exports = (class Book {
     }
 
     isAvailable(){
-        return (this.currentBorrowing == null);
+        return (this.currentBorrowing === null);
     }
 
     isOutdated(){
-        return (!isAvailable() && this.currentBorrowing.toDate <= Date());
+        return (!isAvailable() && this.currentBorrowing.toDate <= Date().now);
     }
 
     whenWillBeAvailable(){

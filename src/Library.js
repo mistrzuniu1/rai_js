@@ -29,7 +29,7 @@ module.exports = (class Library {
         for (var i = 0; i < this.books.length; i++)
         {
             var book = this.books[i];
-            if (book.number == bookNumber)
+            if (book.number === bookNumber)
             {
                 return book.isAvailable();
             }
@@ -41,7 +41,7 @@ module.exports = (class Library {
         for (var i = 0; i < this.books.length; i++)
         {
             var book = this.books[i];
-            if (book.number == bookNumber)
+            if (book.number === bookNumber)
             {
                 return book.whenWillBeAvailable();
             }
@@ -61,7 +61,7 @@ module.exports = (class Library {
         for (var i = 0; i < this.books.length; i++)
         {
             var book = this.books[i];
-            if (book.title == bookTitle && book.isAvailable())
+            if (book.title === bookTitle && book.isAvailable())
             {
                 return book;
             }
