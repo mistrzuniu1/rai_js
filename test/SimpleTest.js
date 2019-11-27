@@ -59,4 +59,23 @@ describe('Book', function () {
 		expect(lalka.returnBook(student)).to.eq(false);
 	});
 
+	it('book that does not belong to library should not be available', function () {
+		const student = createPerson();
+		const harryPotter = createLibrary().getAvailableBook("Harry Potter");
+
+		expect(harryPotter).to.eq(null);
+	});
+
+	it('book should not be available after borrowing it', function () {
+		const student = createPerson();
+		var library = createLibrary();
+		var lalka = library.getAvailableBook("Lalka");
+
+		expect(lalka.borrowBook(student, 3)).to.eq(true);
+
+		lalka = library.getAvailableBook("Lalka");
+		expect(lalka).to.eq(null);
+
+	});
+
 });
