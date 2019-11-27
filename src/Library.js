@@ -35,6 +35,7 @@ module.exports = (class Library {
                 return book.isAvailable();
             }
         }
+        return null;
     }
 
     whenWillBeAvailable(bookNumber){
@@ -45,6 +46,7 @@ module.exports = (class Library {
                 return book.whenWillBeAvailable();
             }
         }
+        return null;
     }
 
     getTopTenBorrowed(){
@@ -53,5 +55,16 @@ module.exports = (class Library {
             return cmp;
         });
         return sorted.slice(0, 10);
+    }
+
+    getAvailableBook(bookName){
+        foreach (book in this.books)
+        {
+            if (book.name == bookName && book.isAvailable())
+            {
+                return book;
+            }
+        }
+        return null;
     }
 });
