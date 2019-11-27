@@ -28,7 +28,7 @@ module.exports = (class Book {
         }
         var currRetDate = this.currentBorrowing.toDate;
         var newRetDate = this.currentBorrowing.toDate.setDate()
-        this.currentBorrowing.toDate
+        this.currentBorrowing.toDate = newRetDate;
     }
 
     isAvailable(){
