@@ -26,23 +26,27 @@ module.exports = (class Library {
     }
 
     isAvailable(bookNumber){
-        var book = this.books.forEach(book => {
+        for (var i = 0; i < this.books.length; i++)
+        {
+            var book = this.books[i];
             if (book.number == bookNumber)
             {
                 return book.isAvailable();
             }
-        });
-        return book;
+        }
+        return null;
     }
 
     whenWillBeAvailable(bookNumber){
-        var book = this.books.forEach(book => {
+        for (var i = 0; i < this.books.length; i++)
+        {
+            var book = this.books[i];
             if (book.number == bookNumber)
             {
                 return book.whenWillBeAvailable();
             }
-        });
-        return book;
+        }
+        return null;
     }
 
     getTopTenBorrowed(){
@@ -54,12 +58,14 @@ module.exports = (class Library {
     }
 
     getAvailableBook(bookTitle){
-        var book = this.books.forEach(book => {
+        for (var i = 0; i < this.books.length; i++)
+        {
+            var book = this.books[i];
             if (book.title == bookTitle && book.isAvailable())
             {
                 return book;
             }
-        });
-        return book;
+        }
+        return null;
     }
 });
