@@ -18,11 +18,11 @@ module.exports = (class Book {
         {
             return false;
         }
-        var bookFrom = Date();
-        var bookTill = bookFrom;
+        var bookFrom = new Date().now;
+        var bookTill = new Date(bookFrom);
         bookTill.setDate(bookFrom + days);
         this.currentBorrowing = new Borrowing(person, bookFrom, bookTill);
-        borrowsList.push(this.currentBorrowing);
+        this.borrowsList.push(this.currentBorrowing);
         return true;
     }
 
@@ -32,7 +32,7 @@ module.exports = (class Book {
             return false;
         }
         var currRetDate = this.currentBorrowing.toDate;
-        var newRetDate = this.currentBorrowing.toDate.setDate()
+        var newRetDate = this.currentBorrowing.toDate.setDate(currRetDate + duration);
         this.currentBorrowing.toDate = newRetDate;
         return true;
     }

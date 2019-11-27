@@ -29,7 +29,7 @@ describe('Person', function () {
 		const student = createPerson();
 		const student2 = createPerson();
 		const lalka = createLibrary().getAvailableBook("Lalka");
-		console.log("Lalka: " + lalka);
+		expect(lalka.borrowBook(student, 3)).to.eq(true);
 		expect(lalka.borrowBook(student2, 3)).to.eq(false);
 		expect(lalka.currentBorrowing.person).to.eq(student);
 	});
