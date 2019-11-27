@@ -5,16 +5,15 @@ module.exports = (class Book {
         this.author = author;
         this.publishDate = publishDate;
         this.price = price;
-        this.borrowDate = borrowDate;
-        this.whoBorrowed = whoBorrowed;
+        this.borrowing = borrowing
     }
 
     returnBook(person) {
-        returnsList.push(person)
+        this.returnsList.push(person)
     }
 
     borrowBook(person){
-        borrowsList.push(person)
+        this.borrowsList.push(person)
     }
 
     prolong(duration){
@@ -22,7 +21,7 @@ module.exports = (class Book {
     }
 
     isAvailable(){
-
+        
     }
 
     isOutdated(){
@@ -30,7 +29,7 @@ module.exports = (class Book {
     }
 
     whenWillBeAvailable(){
-
+        
     }
 
     getBorrower(){
