@@ -69,10 +69,9 @@ describe('Book', function () {
 		lalka.borrowBook(student, 4);
 
 		let expectedDayAfterProlong = new Date();
-		expectedDayAfterProlong.setDate(lalka.currentBorrowing.toDate + 3);
-
-		lalka.prolong(3);
-		let afterProlongDate = lalka.currentBorrowing.toDate;
+		expectedDayAfterProlong.setDate(lalka.currentBorrowing.toDate.getDate() + 3);
+		lalka.prolong(student, 3);
+		let afterProlongDate = new Date(lalka.currentBorrowing.toDate);
 
 		expect(afterProlongDate.getDate()).to.eq(expectedDayAfterProlong.getDate());
 	});
