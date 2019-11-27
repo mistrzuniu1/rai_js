@@ -76,6 +76,8 @@ describe('Book', function () {
 
 		expect(afterProlongDate.getDate()).to.eq(expectedDayAfterProlong.getDate());
 	});
+	
+	
 });
 
 describe('Library', function() {
@@ -95,5 +97,36 @@ describe('Library', function() {
 
 		lalka = library.getAvailableBook("Lalka");
 		expect(lalka).to.eq(null);
+	});
+});
+
+
+describe('Kamil', function() {
+	
+	it('should not be able to prolong book borrowed by someone else', function () {
+		const student = createPerson();
+		const student2 = new Person("John", "Carnegie");
+		const lalka = createLibrary().getAvailableBook("Lalka");
+		lalka.borrowBook(student, 3)
+		expect(lalka.prolong(student2,2)).to.eq(false)
+	});
+
+	it('should return null if book is not available', function () {
+		const lalka = createLibrary().getAvailableBook("Lalka2");
+		expect(lalka).to.eq(null);
+	});
+
+	it('should return not null if book is available', function () {
+		const lalka = createLibrary().getAvailableBook("Lalka");
+		expect(lalka).to.not.eq(null)
+	});
+
+	it('should be able to return borrowed book', function () {
+		const lalka = createLibrary().getAvailableBook("Lalka");
+		const student = createPerson();
+		lalka.borrowBook(student, 3)
+		expect(lalka.returnBook()).to.eq(true)
+		expect(lalka.isAvailable()).to.eq(true)
+		
 	});
 });
